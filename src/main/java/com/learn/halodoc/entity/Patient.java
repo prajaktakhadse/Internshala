@@ -20,7 +20,7 @@ import lombok.Setter;
 public class Patient {
  
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer patientId;
 	 
 	private String name;

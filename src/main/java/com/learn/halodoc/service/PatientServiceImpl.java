@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learn.halodoc.entity.Patient;
+import com.learn.halodoc.exception.ResourceNotFoundException;
 import com.learn.halodoc.payloads.PatientDtos;
 import com.learn.halodoc.repository.PatientRepo;
 
@@ -28,9 +29,16 @@ public class PatientServiceImpl implements PatientService{
 
 
 	@Override
-	public PatientDtos updatePatient(PatientDtos patientDtos, Integer patitentId) {
+	public PatientDtos updatePatient(PatientDtos patientDtos, Integer patientId) {
 		// TODO Auto-generated method stub
-		return null;
+		Patient patient = this.patientRepo.findById(patientId).orElseThrow(() -> new ResourceNotFoundException("Patient", "patientId", patientId) );
+		patient.setName(patientDtos.getName());
+		patient.setContactDetails(patientDtos.getContactDetails());
+		patient.setAddress(patientDtos.getAddress());
+		patient.setPincode(patientDtos.getPincode());
+		
+		Patient savePatient = this.patientRepo.save(patient);
+		return this.modelMapper.map(savePatient, PatientDtos.class);
 	}
 
 

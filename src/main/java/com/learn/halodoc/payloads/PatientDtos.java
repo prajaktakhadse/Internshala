@@ -9,7 +9,7 @@ import lombok.Setter;
 public class PatientDtos {
 
 	
-	private Integer patientId;
+	//private Integer patientId;
 	 
 	private String name;
 	
