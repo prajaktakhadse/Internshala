@@ -24,10 +24,12 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> 
         							auth.requestMatchers("/home/**")
         							.authenticated().requestMatchers("auth/login").permitAll()
-        							.anyRequest().authenticated());
+        							.anyRequest().authenticated())
+        .exceptionHandling( ex -> ex.authenticationEntryPoint(point))
+        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         
         
-        
+        http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         
                 
               
