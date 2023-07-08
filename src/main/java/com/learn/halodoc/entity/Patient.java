@@ -1,6 +1,7 @@
 package com.learn.halodoc.entity;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,9 @@ public class Patient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer patientId;
-	 
+	
+	
+	@Column(name = "patient_name" , nullable = false , length = 100) 
 	private String name;
 	
 	private String contactDetails;

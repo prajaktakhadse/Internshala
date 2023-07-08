@@ -1,6 +1,7 @@
 package com.learn.halodoc.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,13 +54,17 @@ public class PatientServiceImpl implements PatientService{
 	@Override
 	public List<PatientDtos> getAllPatient() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Patient> findPatient = this.patientRepo.findAll();
+		List<PatientDtos> patientDtos = findPatient.stream().map(findpatient -> this.modelMapper.map(findPatient, PatientDtos.class)).collect(Collectors.toList());
+		return patientDtos;
 	}
 
 
 	@Override
 	public void deletePatient(Integer PatientId) {
 		// TODO Auto-generated method stub
+		Patient patient = this.patientRepo.findById(PatientId).orElseThrow(()-> new ResourceNotFoundException("Patient", "patientId", PatientId));
+		this.patientRepo.delete(patient);
 		
 	}
 
