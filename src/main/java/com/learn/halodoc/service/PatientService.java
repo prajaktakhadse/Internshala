@@ -1,12 +1,20 @@
 package com.learn.halodoc.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-import com.learn.halodoc.entity.Patient;
+
 import com.learn.halodoc.payloads.PatientDtos;
 
-@Service
 public interface PatientService {
 
-	Patient createpatient(Patient patient);
+	PatientDtos createpatient(PatientDtos patient);
+	
+	PatientDtos updatePatient(PatientDtos patientDtos, Integer patitentId);
+	
+	PatientDtos getPatientById(Integer patientId);
+	
+	List<PatientDtos> getAllPatient();
+	
+	void deletePatient(Integer PatientId);
+	
 }

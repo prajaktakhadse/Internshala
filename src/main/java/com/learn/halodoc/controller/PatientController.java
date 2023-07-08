@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.learn.halodoc.entity.Patient;
+
 import com.learn.halodoc.payloads.PatientDtos;
 import com.learn.halodoc.service.PatientService;
 
@@ -22,8 +22,8 @@ public class PatientController {
 	private PatientService patientService;
 	
 	@PostMapping("/addPatient")
-	public ResponseEntity<Patient> createPatient(@Valid @RequestBody Patient patientDtos){
-		Patient adddp = this.patientService.createpatient(patientDtos);
-		return new ResponseEntity<>(adddp,HttpStatus.CREATED );
+	public ResponseEntity<PatientDtos> createPatient(@Valid @RequestBody PatientDtos patientDtos){
+		PatientDtos createpatientDtos = this.patientService.createpatient(patientDtos);
+		return new ResponseEntity<PatientDtos>(createpatientDtos, HttpStatus.CREATED);
 	}
 }

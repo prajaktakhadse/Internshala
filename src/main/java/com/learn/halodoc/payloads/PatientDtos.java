@@ -1,7 +1,11 @@
 package com.learn.halodoc.payloads;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@NoArgsConstructor
+@Getter@Setter
 public class PatientDtos {
 
 	
@@ -16,7 +20,7 @@ public class PatientDtos {
 	private String pincode;
 	
 	
-	
+/*	
 
  public PatientDtos() {
 		// TODO Auto-generated constructor stub
@@ -63,4 +67,5 @@ public class PatientDtos {
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
+	*/
 }
