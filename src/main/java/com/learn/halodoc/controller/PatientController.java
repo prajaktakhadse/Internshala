@@ -3,6 +3,7 @@ package com.learn.halodoc.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,5 +36,11 @@ public class PatientController {
 			@PathVariable("patientId") Integer pid){
 		PatientDtos updatePatient = this.patientService.updatePatient(patientDtos, pid);
 		return new ResponseEntity<PatientDtos>(updatePatient, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getPatient/{patientId}")
+	public ResponseEntity<PatientDtos> getPatientById(@PathVariable("patientId") Integer pid){
+		PatientDtos patientById = this.patientService.getPatientById(pid);
+		return new ResponseEntity<PatientDtos>(patientById,HttpStatus.OK);
 	}
 }

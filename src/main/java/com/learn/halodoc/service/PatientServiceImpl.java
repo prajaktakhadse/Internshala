@@ -45,7 +45,8 @@ public class PatientServiceImpl implements PatientService{
 	@Override
 	public PatientDtos getPatientById(Integer patientId) {
 		// TODO Auto-generated method stub
-		return null;
+		Patient patient = this.patientRepo.findById(patientId).orElseThrow(()-> new ResourceNotFoundException("Patient", "patientId", patientId));
+		return this.modelMapper.map(patient, PatientDtos.class);
 	}
 
 
