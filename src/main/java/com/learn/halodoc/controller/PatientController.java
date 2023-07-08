@@ -1,5 +1,6 @@
 package com.learn.halodoc.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,4 +60,10 @@ public class PatientController {
 		//return new ResponseEntity<>(Map.of("message", "User Deleted Successfully"), HttpStatus.OK);
 	     return new ResponseEntity<ApiResponse>(new ApiResponse("Patient Deleted Successfully",false),HttpStatus.OK);
     }
+	
+	@GetMapping("/currentUser")
+	public String getloggedInUser(Principal principal)
+	{
+		return principal.getName();
+	}
 }
