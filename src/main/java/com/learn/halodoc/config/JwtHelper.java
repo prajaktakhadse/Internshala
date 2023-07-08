@@ -39,7 +39,7 @@ public class JwtHelper {
     //for retrieveing any information from token we will need the secret key
     @SuppressWarnings("deprecation")
 	private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return (Claims) Jwts.parserBuilder().setSigningKey(secret).build().parse(token).getBody();
     }
 
     //check if the token has expired
@@ -64,7 +64,7 @@ public class JwtHelper {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-                .signWith(SignatureAlgorithm.HS512, secret).compact();
+                .signWith(SignatureAlgorithm.HS512,secret).compact();
     }
 
     //validate token
